@@ -14,6 +14,7 @@ function photographerFactory(data) {
         // creation de mon article
         const article = document.createElement('article')
 
+        // div qui englobe img + name
         const linkPhotographer=document.createElement('div')
         linkPhotographer.classList = "photographer"
         // portrait

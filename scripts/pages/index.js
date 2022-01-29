@@ -40,11 +40,11 @@ init();
 
 // }  
 
-class Photographer {
-    constructor(data){
-        this._name = data.name
-        console.log(name)
-    }
-}
+// class Photographer {
+//     constructor(data){
+//         this._name = data.name
+//         console.log(name)
+//     }
+// }
 
-let linkPhotographer = document.getElementsByClassName(".photographer")
+// let linkPhotographer = document.getElementsByClassName(".photographer")

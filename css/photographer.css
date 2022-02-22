@@ -1,11 +1,18 @@
-#contact_modal {
-    display: none;
-}
-
+/*******************
+*** PHOTOGRAPHER ***
+*******************/
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.photograph-section {
+    font-size: 20px;
+    padding-left: 40px;
 }
 
 .contact_button {
@@ -19,6 +26,59 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.photograph-picture {
+    padding-right: 40px;
+}
+
+.photograph-picture img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+/************
+*** MEDIA ***
+************/
+.media-form {
+    margin-top: 40px;
+    padding-left: 100px;
+    border-radius: 5px;
+}
+
+.media-form label{
+    font-size: 18px;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.media-form select {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #901C1C;
+    color: white;
+}
+
+.media-form select:after {
+    border-bottom: 10px solid black;
+}
+
+.name-page {
+    color: #D3573C;
+    font-size: 46px;
+}
+
+.tagline-page {
+    color: grey;
+    font-weight: 200;
+}
+
+/************
+*** MODAL ***
+************/
+#contact_modal {
+    display: none;
 }
 
 .modal {
@@ -48,7 +108,7 @@
     text-align: center;
 }
 
-form {
+#contact-form {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -74,4 +134,3 @@ form input {
     border: none;
     border-radius: 5px;
 }
-

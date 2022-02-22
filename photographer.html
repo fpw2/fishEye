@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -11,15 +11,28 @@
 
 <body>
   <header>
-    <img src="assets/images/logo.png" class="logo" />
+    <a href="/index.html">
+      <img src="assets/images/logo.png" class="logo" alt="logo" />
+    </a>
   </header>
   <main id="main">
     <div class="photograph-header">
-      <div class="photographer_section"></div>
+      <div class="photograph-section"></div>
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      <div class="photographer-picture"></div>
+      <div class="photograph-picture"></div>
     </div>
   </main>
+  <section class="media">
+    <form class="media-form">
+      <label for="select">Trier par</label>
+      <select name="select" id="select">
+          <option>Popularité</option>
+          <option class="bar">Date</option>
+          <option>Titre</option>
+      </select>
+    </form>
+    <div class="photograph-media"></div>
+  </section>
   <div id="contact_modal">
     <div class="modal">
       <header>
@@ -30,7 +43,7 @@
         <div>
           <div>
             <label for="first">Prénom</label>
-            <input type="text" id="first" title="le prénom ne doit contenir que des lettres" required/>
+            <input type="text" id="first" title="le prénom ne doit contenir que des lettres" required />
             <span class="error-input"></span>
           </div>
           <div>
@@ -45,7 +58,7 @@
           </div>
           <div>
             <label for="message">Message</label>
-            <input type="text" id="message"/>
+            <input type="text" id="message" />
             <span class="error-input"></span>
           </div>
         </div>
@@ -53,7 +66,26 @@
       </form>
     </div>
   </div>
+
+  <!-- Factories -->
+
+  
+  <!-- Api -->
+  <script src="/scripts/api/Api.js"></script>
+  
+  <!-- Templates -->
+  <script src="/scripts/templates/PhotographerCard.js"></script>
+  
+  
+  <!-- Entry point -->
+  <script src="scripts/pages/photographer.js"></script>
+
+
+
   <script src="/scripts/utils/contactForm.js"></script>
+
+
+
 </body>
 
 </html>

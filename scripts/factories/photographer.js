@@ -1,53 +1,39 @@
-function photographerFactory(data) {
-    const {
-        portrait,
-        name,
-        city,
-        country,
-        tagline,
-        price
-    } = data
+// function photographerFactory(data) {
+//     // je récupère les clés correspondant à mon json
+//     const {
+//         portrait,
+//         picture = `assets/photographers/${portrait}`,
+//         name,
+//         id,
+//         path = `/photographer.html?id=${id}`,
+//         city,
+//         country,
+//         tagline,
+//         price
+//     } = data
 
-    const picture = `assets/photographers/${portrait}`
+//     function getUserCardDOM() {
+//         // creation de mon article
+//         const article = document.createElement('article')
 
-    function getUserCardDOM() {
-        // creation de mon article
-        const article = document.createElement('article')
-
-        // div qui englobe img + name
-        const linkPhotographer=document.createElement('div')
-        linkPhotographer.classList = "photographer"
-        // portrait
-        const img = document.createElement('img')
-        img.setAttribute("src", picture)
-        // name
-        const eltName = document.createElement('h2')
-        eltName.textContent = name;
-        // locality (city + country)
-        const eltLocality = document.createElement("h3")
-        eltLocality.textContent = city + ", " + country
-        eltLocality.classList = "locality"
-        // tagline
-        const eltTagline = document.createElement("h4")
-        eltTagline.textContent = tagline
-        eltTagline.classList = "tagline"
-        // price
-        const eltPrice = document.createElement("span")
-        eltPrice.textContent = price + "€/jour"
-        eltPrice.classList = "price"
-        // article photographer
-        article.appendChild(linkPhotographer)
-        linkPhotographer.appendChild(img)
-        linkPhotographer.appendChild(eltName)
-        article.appendChild(eltLocality)
-        article.appendChild(eltTagline)
-        article.appendChild(eltPrice)
-
-
-        return (article)
-    }
-    return {
-        name,
-        getUserCardDOM
-    }
-}
+//         // creation de ma card
+//         const userCard =
+//         `
+//         <a href="${path}" class="photographer">
+//             <img src="${picture}" alt="">
+//             <h2>${name}</h2>
+//         </a>
+//         <h3 class="locality">${city}, ${country}</h3>
+//         <h4 class="tagline">${tagline}</h4>
+//         <span class="price">${price}€/jour</span>
+//         `
+     
+//         article.innerHTML = userCard
+//         return article
+//     }
+//     return {
+//         name,
+//         id,
+//         getUserCardDOM
+//     }
+// }

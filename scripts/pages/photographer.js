@@ -17,14 +17,26 @@ class PhotographerPage {
         const $photographerPicture = document.querySelector('.photograph-picture')
         const $photographerMedia = document.querySelector(".photograph-media")
 
-        // API DATA
+        // DONNEES API 
         const photographersData = await this.photographerApi.getPhotographer()
-        const medias = await this.photographerApi.getPhotographerMedia()
+        //console.log("PhotographerData",photographersData[0])
+        const mediasData = await this.photographerApi.getPhotographerMedia()
+        //console.log("PhotographerMedia",medias)
 
-        console.log("data",photographersData[0])
-        console.log("media",medias)
-        const photographerTemplate = new PhotographerTemplate(photographersData[0],medias[0])
+        const photographerTemplate = new PhotographerTemplate(photographersData[0],mediasData)
         //console.log(photographerTemplate.createPhotographerPage()[1])
+        // const image = medias.filter(media => {
+        //     if(idPhotographer == media.photographerId)
+        //     return media
+        // });
+        // console.log("boucle",image)
+
+        // mediasData.medias.forEach(media => {
+        //     const photographerTemplate = new PhotographerTemplate(media)
+        //     //console.log(photographer.portrait)
+        //     $photographerMedia.innerHTML = photographerTemplate.createPhotographerMedia()
+        // })
+
 
         // HTML
         $photographerSection.innerHTML = photographerTemplate.createPhotographerPage()[0]

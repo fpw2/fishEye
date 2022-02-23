@@ -1,9 +1,9 @@
 class PhotographerTemplate {
-    constructor(photographer,media) {
+    constructor(photographer,medias) {
         this.photographer = photographer
-        this.media = media
+        this.medias = medias
         console.log("photographer", photographer)
-        console.log("media", media)
+        console.log("PhotographerCardMedia", this.media)
 
         // emballage = wrapper
         this.$wrapper = document.createElement('article')
@@ -34,7 +34,7 @@ class PhotographerTemplate {
         `
         const imgCard =
             `
-        <img src="assets/photographers/${this.photographer.portrait}" alt="assets/photographers/${this.photographer.portrait}">
+        <img src="assets/photographers/${this.photographer.portrait}" alt="">
         `
 
         const array = [userCard, imgCard]
@@ -42,10 +42,19 @@ class PhotographerTemplate {
     }
 
     createPhotographerMedia() {
-        const media =
+        const userMedias =
             `
-        <img src="Sample Photos/${this.photographer.name}/${this.media}" alt="Sample Photos/${this.photographer.name}/${this.media[0]}">
+        <img src="Sample Photos/${this.photographer.name}/${this.medias.image}" alt="Sample Photos/${this.photographer.name}/${this.media}">
+        <video src="Sample Photos/${this.photographer.name}/${this.medias.video}" </video>
+        <div class="card-content">
+            <h3 class="title-card">${this.medias.title}</h3>
+            <div class="like">
+                <span>${this.medias.like}</span>
+                <i class="fa-solid fa-heart"></i>
+            </div>
+        </div>
         `
-        return media
+        this.$wrapper = userMedias
+        return this.$wrapper
     }
 }

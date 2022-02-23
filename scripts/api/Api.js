@@ -12,7 +12,7 @@ class Api {
                 let data = await response.json()
                 //console.log(data)
                 let photographers = data.photographers
-                //console.log(photographers)
+                console.log("getPhotographerAll", photographers)
                 //const idPhotographer = JSON.stringify(photographers)
                 //console.log(idPhotographer)
                 //localStorage.setItem("data",idPhotographer)
@@ -34,7 +34,7 @@ class Api {
                 let data = await response.json()
                 //console.log(data)
                 let photographers = data.photographers
-                const photographerResult = photographers.filter((photographer) => {
+                const photographerResult = photographers.filter(photographer => {
                     if (photographer.id == idPhotographer) {
                         return photographer
                     }
@@ -58,13 +58,19 @@ class Api {
             let response = await fetch(this.url)
             if (response.ok) {
                 let data = await response.json()
-                console.log(data)
-                let media = data.media
-                //console.log(media)
-                //const idPhotographer = JSON.stringify(photographers)
-                //console.log(idPhotographer)
-                //localStorage.setItem("data",idPhotographer)
-               return media
+                //console.log(data)
+                let medias = data.media
+                console.log("ApiMedia", medias)
+                const mediaResult = medias.filter(media => {
+                    if (media.photgrapherId == idPhotographer) {
+                        return media
+                    }
+                })
+                //console.log("ApiMedia", mediaResult)
+
+                return {
+                    medias
+                }
 
             } else {
                 console.error(response.status)

@@ -1,60 +1,90 @@
+/*********************** Recuperation de l'id Photographer dans l'url ******************/ 
 
-// recuperation de mon idPhotographer dans l'url
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const idPhotographer = urlParams.get("id")
-console.log("id="+idPhotographer)
 
-/*******************************************/
+/***************************************************************************************/
+
+/**
+ * Incrémentation like
+ */
+function increment(data) {
+    return data += 1 
+}
+
 class PhotographerPage {
     constructor() {
         this.photographerApi = new Api('/data/photographers.json')
-        //console.log(this.photographerApi)
     }
     async main() {
         // DOM
-        const $photographerSection = document.querySelector('.photograph-section')
-        const $photographerPicture = document.querySelector('.photograph-picture')
+        const $photographerSection = document.querySelector(".photograph-section")
+        const $photographerPicture = document.querySelector(".photograph-picture")
         const $photographerMedia = document.querySelector(".photograph-media")
+        let $like = document.querySelector(".like")
+        const $mark = document.querySelector(".mark")
+        let $select = document.querySelector('#select');
 
         // DONNEES API 
         const photographersData = await this.photographerApi.getPhotographer()
         //console.log("PhotographerData",photographersData[0])
         const mediasData = await this.photographerApi.getPhotographerMedia()
-        //console.log("PhotographerMedia",medias)
+        console.log("PhotographerMedia", mediasData)
 
-        const photographerTemplate = new PhotographerTemplate(photographersData[0],mediasData)
-        //console.log(photographerTemplate.createPhotographerPage()[1])
-        // const image = medias.filter(media => {
-        //     if(idPhotographer == media.photographerId)
-        //     return media
-        // });
-        // console.log("boucle",image)
-
-        // mediasData.medias.forEach(media => {
-        //     const photographerTemplate = new PhotographerTemplate(media)
-        //     //console.log(photographer.portrait)
-        //     $photographerMedia.innerHTML = photographerTemplate.createPhotographerMedia()
-        // })
+        // INCREMENTATION LIKE
+        //like.addEventListener("click", increment())
 
 
-        // HTML
+
+
+        // HTML HEADER PHOTOGRAPHER 
+        const photographerTemplate = new PhotographerTemplate(photographersData[0])
         $photographerSection.innerHTML = photographerTemplate.createPhotographerPage()[0]
         $photographerPicture.innerHTML = photographerTemplate.createPhotographerPage()[1]
-        $photographerMedia.innerHTML = photographerTemplate.createPhotographerMedia()
+
+        const like = mediasData.likes
+        console.log(like)
+        
+        // HTML MEDIA
+        function displayMedia(objectMedia) {
+            // initialisation 
+            let totalLikes = 0
+            $photographerMedia.innerHTML = ""
+            objectMedia.map(media => {
+                //console.log(media)
+                // ajout d'un clé : totalLikes dans medias, valeur : media.likes
+                totalLikes += media.likes
+                media.totalLikes = totalLikes
+                //console.log("totalLike",media.total)
+                const photographerTemplate = new PhotographerTemplate(photographersData[0], media)
+                //console.log("totalLike",totalLikes)
+                //console.log(photographerTemplate)
+                $photographerMedia.innerHTML += photographerTemplate.createPhotographerMedia()[0]
+                //$mark.innerHTML = ""
+                $mark.innerHTML = photographerTemplate.createPhotographerMedia()[1]
+            })
+        }
+
+        // CHOIX TRIE
+        displayMedia(sortBy("popularite", mediasData)) // affichage par défaut
+        $select.addEventListener('change', function () {
+            //console.log('selectedIndex => ' + this.selectedIndex);
+            if (this.selectedIndex == 0) {
+                displayMedia(sortBy("popularite", mediasData))
+                return
+            }
+            if (this.selectedIndex == 1) {
+                displayMedia(sortBy("date", mediasData))
+                return
+            }
+            if (this.selectedIndex == 2) {
+                displayMedia(sortBy("titre", mediasData))
+                return
+            }
+        })
     }
 }
 
 const init = new PhotographerPage()
 init.main()
-
-// class PhotographerMedia {
-//     constructor() {
-//         this.photographerApi = new Api('/data/photographers.json')
-//     }
-//     async section() {
-//         const mediaData = await this.photographerApi.getPhotographerMedia()
-//         console.log(mediaData)
-//     }
-
-// }

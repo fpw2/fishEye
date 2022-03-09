@@ -4,37 +4,48 @@
 <head>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <meta charset="utf-8">
+
+  <!-- favicon-->
   <link rel="icon" type="image/png" href="assets/favicon.png">
+
+  <!-- google fonts pour la police-->
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+
+  <!-- font awesome pour les icônes-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+
   <title>Fisheye - photographe </title>
 </head>
 
 <body>
-  <header>
-    <a href="/index.html">
-      <img src="assets/images/logo.png" class="logo" alt="logo" />
-    </a>
-  </header>
-  <main id="main">
-    <div class="photograph-header">
-      <div class="photograph-section"></div>
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      <div class="photograph-picture"></div>
-    </div>
-  </main>
-  <section class="media">
-    <form class="media-form">
-      <label for="select">Trier par</label>
-      <select name="select" id="select">
-          <option>Popularité</option>
-          <option class="hr" disabled="disabled">_________</option>
-          <option>Date</option>
-          <option class="hr" disabled="disabled">_________</option>
-          <option>Titre</option>
-      </select>
-    </form>
-    <div class="photograph-media"></div>
-  </section>
+  <div class="container">
+    <header>
+      <a href="/index.html">
+        <img src="assets/images/logo.png" class="logo" alt="logo" />
+      </a>
+    </header>
+    <main id="main">
+      <div class="photograph-header">
+        <div class="photograph-section"></div>
+        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <div class="photograph-picture"></div>
+      </div>
+    </main>
+    <section class="media">
+      <div class="select-block">
+        <label for="select">Trier par</label>
+        <div class="custom-select">
+          <select name="select" id="select">
+            <option value="0">Popularité</option>
+            <option value="1">Date</option>
+            <option value="2">Titre</option>
+          </select>
+        </div>
+      </div>
+      <div class="photograph-media"></div>
+    </section>
+    <div class="mark"></div>
+  </div>
   <div id="contact_modal">
     <div class="modal">
       <header>
@@ -44,49 +55,42 @@
       <form id="contact-form" name="contact" method="get">
         <div>
           <div>
-            <label for="first">Prénom</label>
-            <input type="text" id="first" title="le prénom ne doit contenir que des lettres" required />
-            <span class="error-input"></span>
+            <label for="first">Prénom *</label>
+            <input type="text" id="first" pattern="[a-zA-Z]{2,}" required />
           </div>
           <div>
-            <label for="last">Nom</label>
-            <input type="text" id="last" />
-            <span class="error-input"></span>
+            <label for="last">Nom *</label>
+            <input type="text" id="last" pattern="[a-zA-Z]{2,}" required />
           </div>
           <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" />
-            <span class="error-input"></span>
+            <label for="email">Email *</label>
+            <input type="email" id="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required />
           </div>
           <div>
-            <label for="message">Message</label>
-            <input type="text" id="message" />
-            <span class="error-input"></span>
+            <label for="message">Message *</label>
+            <textarea  cols="40" rows="5" width="100%" required></textarea>
+            <span class="notice">* champs obligatoires</span>
           </div>
         </div>
-        <button type="submit" class="contact_button">Envoyer</button>
+        <button type="submit" class="submit contact_button">Envoyer</button>
       </form>
     </div>
   </div>
 
-  <!-- Factories -->
-
-  
   <!-- Api -->
   <script src="/scripts/api/Api.js"></script>
-  
+
   <!-- Templates -->
   <script src="/scripts/templates/PhotographerCard.js"></script>
-  
-  
+
+  <!-- Utils -->
+  <script src="/scripts/utils/contactForm.js"></script>
+  <script src="/scripts/utils/lightBox.js"></script>
+  <script src="/scripts/utils/sortBy.js"></script>
+  <script src="/scripts/utils/customSelect.js"></script>
+
   <!-- Entry point -->
   <script src="scripts/pages/photographer.js"></script>
-
-
-
-  <script src="/scripts/utils/contactForm.js"></script>
-
-
 
 </body>
 

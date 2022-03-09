@@ -1,14 +1,15 @@
 class PhotographerTemplate {
-    constructor(photographer,medias) {
+    constructor(photographer, medias) {
         this.photographer = photographer
         this.medias = medias
-        console.log("photographer", photographer)
-        console.log("PhotographerCardMedia", this.media)
+        //console.log("photographer", photographer)
+        //console.log("PhotographerCardMedia", medias)
 
         // emballage = wrapper
         this.$wrapper = document.createElement('article')
     }
 
+    // HTML INDEX
     createPhotographerCard() {
         const photographerCard =
             `
@@ -25,6 +26,7 @@ class PhotographerTemplate {
         return this.$wrapper
     }
 
+    // HTML PHOTOGRAPHER
     createPhotographerPage() {
         const userCard =
             `
@@ -36,25 +38,57 @@ class PhotographerTemplate {
             `
         <img src="assets/photographers/${this.photographer.portrait}" alt="">
         `
-
         const array = [userCard, imgCard]
         return array
     }
 
+    // HTML PHOTOGRAPHER
     createPhotographerMedia() {
+        //console.log(this.medias)
+        //console.log("like",this.medias.like)
+        // je vérifie que le chemin existe si c'est le cas ? j'affiche sinon : je ne mets rien
+        const image = this.medias.image ? `<img classe="image" src="Sample Photos/${this.photographer.name}/${this.medias.image}" onclick="openLightbox();currentSlide( )" class="hover-shadow preview" alt="Sample Photos/${this.photographer.name}/${this.medias.image}"></img>` : ""
+        const video = this.medias.video ? `<video controls class="card-video" src="Sample Photos/${this.photographer.name}/${this.medias.video}" onclick="openLightbox();toSlide(1)" class="hover-shadow preview">> </video>` : ""
         const userMedias =
             `
-        <img src="Sample Photos/${this.photographer.name}/${this.medias.image}" alt="Sample Photos/${this.photographer.name}/${this.media}">
-        <video src="Sample Photos/${this.photographer.name}/${this.medias.video}" </video>
-        <div class="card-content">
-            <h3 class="title-card">${this.medias.title}</h3>
-            <div class="like">
-                <span>${this.medias.like}</span>
-                <i class="fa-solid fa-heart"></i>
+        <!-- Images used to open the lightbox -->
+        <article class="gallery">
+            <div class="card-gallery">
+                ${image}
+                ${video}
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">${this.medias.title}</h3>
+                <div class="card-like">
+                    <span>${this.medias.likes}</span>
+                    <i class="like fa-solid fa-heart"></i>
+                </div>
+            </div>
+        </article>
+
+        <!-- The Modal/Lightbox -->
+        <div id="lightbox">
+            <div class="modal-content">
+                <div class="slide">
+                    ${image}
+                    ${video}
+                    <span id="caption">${this.medias.title}</span>
+                </div>
+                <a class="close pointer" onclick="closeLightbox()"><i class="fa-duotone fa-xmark fa-2x"></i></a>
+                <!-- Next/previous controls -->
+                <a class="previous" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left fa-2x"></i></a>
+                <a class="next" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right fa-2x"></i></a>
             </div>
         </div>
         `
-        this.$wrapper = userMedias
-        return this.$wrapper
+        // html nombre total de like et le prix du photographe
+        const staticCard =
+            `
+        <p>${this.medias.totalLikes} <i class="fa-solid fa-heart"></i></p>
+        <p>${this.photographer.price} € / jour</p>
+       
+       `
+        const array = [userMedias, staticCard]
+        return array
     }
 }

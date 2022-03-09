@@ -1,13 +1,32 @@
+/* bandeau fixe */
+.mark {
+    position: fixed;
+    bottom: 0;
+    right: 40px;
+    z-index: 2000;
+    background-color: #db8875;
+    border-radius: 5px;
+    display: flex;
+    width: 350px;
+    font-size: 20px;
+    font-weight: bold;
+    justify-content: space-between;
+}
+.mark p{
+    padding: 0 30px;
+}
 /*******************
 *** PHOTOGRAPHER ***
 *******************/
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
-    margin: 0 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* force mon bloc a prendre la largeur de la page*/
+    min-width: 1200px;
+    margin-right: 100px;
 }
 
 .photograph-section {
@@ -41,29 +60,6 @@
 /************
 *** MEDIA ***
 ************/
-.media-form {
-    margin-top: 40px;
-    padding-left: 100px;
-    border-radius: 5px;
-}
-
-.media-form label{
-    font-size: 18px;
-    font-weight: bold;
-    padding-right: 10px;
-}
-
-.media-form select {
-    padding: 10px 15px;
-    border-radius: 5px;
-    background-color: #901C1C;
-    color: white;
-}
-
-.media-form select:after {
-    border-bottom: 10px solid black;
-}
-
 .name-page {
     color: #D3573C;
     font-size: 46px;
@@ -74,63 +70,50 @@
     font-weight: 200;
 }
 
-/************
-*** MODAL ***
-************/
-#contact_modal {
-    display: none;
+/***** gallery *****/
+.photograph-media {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-column-gap: 80px;
+    grid-row-gap: 40px;
+    object-fit: cover;
 }
 
-.modal {
-    border-radius: 5px;
-    background-color: #DB8876;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 35px;
-    margin: auto;
+.gallery {
+    width: 350px;
+    margin: 0 auto;
 }
 
-.modal header {
-    justify-content: space-between;
+.card-gallery , .card-video{
+    height: 300px;
+    width: 350px;
+
+}
+.card-gallery img, video{
+    height: 100%;
     width: 100%;
-}
-
-.modal header img {
-    cursor: pointer;
-}
-
-.modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
-}
-
-#contact-form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-form label {
-    color: #312E2E;
-    font-size: 36px;
-}
-
-form div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
-}
-
-form input {
-    width: 100%;
-    height: 68px;
-    border: none;
+    object-fit: cover;
     border-radius: 5px;
 }
+
+
+.card-content{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    
+}
+.card-title {
+    color: #ac330f;
+    font-weight: 200;
+    font-size: 20px;
+    margin: 0px ;
+
+}
+.card-like{
+    color: #ac330f;
+    font-weight: bold;
+    align-self: center;
+}
+
+

@@ -1,39 +1,59 @@
+// DOM
+const container = document.querySelector(".container")
+const modal = document.getElementById("contact_modal");
+const firstName = document.getElementById("first")
+const lastName = document.getElementById("last")
+const email = document.getElementById("email")
+const validate = document.querySelector(".submit")
+
+// Affichage modal contactez-moi
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
+    container.classList.add("fuzzy")
 }
 
+// Fermeture modal contactez-moi
 function closeModal() {
-    const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
+    container.classList.remove("fuzzy")
 }
 
-let contactForm = document.getElementById("contact-form")
-let contactModal = document.getElementById("contact_modal")
-
-let firstName = document.getElementById("first")
-firstName.oninvalid=function(event){
-    event.target.setCustomValidity('le prénom ne doit contenir que des lettres')
+firstName.oninvalid = function(e) {
+	e.target.setCustomValidity("");
+	if (!e.target.validity.valid) {
+		if (e.target.value.length == 0) {
+        e.target.setCustomValidity("Ce champ est obligatoire");
+		} else {
+        e.target.setCustomValidity("Veuillez entrer 2 caractères ou plus sans chiffre");
+		}
+	}
 }
 
-// contactForm.addeListener('submit',function(e) {
-//     e.preventDefault()
+lastName.oninvalid = function(e) {
+	e.target.setCustomValidity("");
+	if (!e.target.validity.valid) {
+		if (e.target.value.length == 0) {
+        e.target.setCustomValidity("Ce champ est obligatoire");
+		} else {
+        e.target.setCustomValidity("Veuillez entrer 2 caractères ou plus sans chiffre");
+		}
+	}
+}
 
-//     // input
-//     let firstName = document.getElementById("first")
-//     let lastName = document.getElementById("last")
-//     let email = document.getElementById("email")
-//     let message = document.getElementById("message")
+email.oninvalid = function(e) {
+	e.target.setCustomValidity("");
+	if (!e.target.validity.valid) {
+		if (e.target.value.length == 0) {
+        e.target.setCustomValidity("Ce champ est obligatoire");
+		} else {
+        e.target.setCustomValidity("Entrez une adresse valide. Exemple:contact@mail.com");
+		}
+	}
+}
 
-//     // regex
-//     let identityFormat = /^[a-zA-Z]{2,}$/i
-//     var mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-
-//     let value = firstName.value
-//     console.log(value)
-
-
-//     contactModal.style.display = "none"
-
-
-// })
+validate.addEventListener("click", function(e){
+    e.preventDefault
+    if(!firstName.oninvalid){
+        alert("envoyé")
+    }
+})

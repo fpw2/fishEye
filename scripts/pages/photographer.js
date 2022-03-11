@@ -33,8 +33,10 @@ class PhotographerPage {
         console.log("PhotographerMedia", mediasData)
 
         // INCREMENTATION LIKE
-        //like.addEventListener("click", increment())
-
+        // likes.addEventListener("click", increment(likes) {
+        //     return likes += 1
+        // })
+        // increment(mediasData.likes)
 
 
 
@@ -47,12 +49,12 @@ class PhotographerPage {
         console.log(like)
         
         // HTML MEDIA
-        function displayMedia(objectMedia) {
+        const displayMedia = (objectMedia) => {
             // initialisation 
             let totalLikes = 0
             $photographerMedia.innerHTML = ""
-            objectMedia.map(media => {
-                //console.log(media)
+            objectMedia.map((media,index) => {
+                //console.log(index)
                 // ajout d'un clé : totalLikes dans medias, valeur : media.likes
                 totalLikes += media.likes
                 media.totalLikes = totalLikes
@@ -60,9 +62,9 @@ class PhotographerPage {
                 const photographerTemplate = new PhotographerTemplate(photographersData[0], media)
                 //console.log("totalLike",totalLikes)
                 //console.log(photographerTemplate)
-                $photographerMedia.innerHTML += photographerTemplate.createPhotographerMedia()[0]
+                $photographerMedia.innerHTML += photographerTemplate.createPhotographerMedia(index)[0]
                 //$mark.innerHTML = ""
-                $mark.innerHTML = photographerTemplate.createPhotographerMedia()[1]
+                $mark.innerHTML = photographerTemplate.createPhotographerMedia(index)[1]
             })
         }
 

@@ -30,9 +30,28 @@ function showSlide(n) {
   if (n < 1) {
   	slideIndex = slides.length;
   }
-  for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  slides[slideIndex - 1].style.display = 'block';
+  // for (let i = 0; i < slides.length; i++) {
+  //     //slides[i].style.display = "none";
+  // }
+  console.log("alo",slides[slideIndex])
+  // console.log("slide",slides)
+
+  // slides[slideIndex].style.display ="block !important"
+  // slides[slideIndex - 1].style.display = 'block'
 }
 
+// class lightbox {
+
+//   static init () {
+//     const links = document.querySelectorAll(".image",".video")
+//       links.forEach(link => link.addEventListener("click", (e) => {
+//         e.preventDefault()
+//         new lightbox(e.currentTarget.getAttribut("src"))
+//       }))
+//   }
+
+
+
+// }
+
+// lightbox.init()

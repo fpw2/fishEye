@@ -48,3 +48,7 @@ h1 {
 .fuzzy {
     opacity: 0.5;
 }
+
+.pointer {
+    cursor: pointer;
+}

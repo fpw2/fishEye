@@ -43,12 +43,12 @@ class PhotographerTemplate {
     }
 
     // HTML PHOTOGRAPHER
-    createPhotographerMedia() {
-        //console.log(this.medias)
+    createPhotographerMedia(index) {
+        //console.log(index)
         //console.log("like",this.medias.like)
         // je vérifie que le chemin existe si c'est le cas ? j'affiche sinon : je ne mets rien
-        const image = this.medias.image ? `<img classe="image" src="Sample Photos/${this.photographer.name}/${this.medias.image}" onclick="openLightbox();currentSlide( )" class="hover-shadow preview" alt="Sample Photos/${this.photographer.name}/${this.medias.image}"></img>` : ""
-        const video = this.medias.video ? `<video controls class="card-video" src="Sample Photos/${this.photographer.name}/${this.medias.video}" onclick="openLightbox();toSlide(1)" class="hover-shadow preview">> </video>` : ""
+        const image = this.medias.image ? `<img class="image pointer" src="Sample Photos/${this.photographer.name}/${this.medias.image}"onclick="openLightbox();currentSlide(${index+1})" class="hover-shadow preview" alt="Sample Photos/${this.photographer.name}/${this.medias.image}"></img>` : ""
+        const video = this.medias.video ? `<video controls class="video card-video pointer" src="Sample Photos/${this.photographer.name}/${this.medias.video}" onclick="openLightbox();currentSlide(1)" class="hover-shadow preview">> </video>` : ""
         const userMedias =
             `
         <!-- Images used to open the lightbox -->
@@ -76,8 +76,8 @@ class PhotographerTemplate {
                 </div>
                 <a class="close pointer" onclick="closeLightbox()"><i class="fa-duotone fa-xmark fa-2x"></i></a>
                 <!-- Next/previous controls -->
-                <a class="previous" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left fa-2x"></i></a>
-                <a class="next" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right fa-2x"></i></a>
+                <a class="previous" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left fa-3x"></i></a>
+                <a class="next" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right fa-3x"></i></a>
             </div>
         </div>
         `

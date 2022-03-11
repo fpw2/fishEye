@@ -19,7 +19,9 @@
 
 #lightbox {
   display: none;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 9999;
   padding: 10px 62px 0px 62px;
   width: 100%;
@@ -30,12 +32,11 @@
 
 .fa-chevron-left, .fa-chevron-right,.fa-xmark {
   color: #901C1C;
+  position: fixed;
 }
 
 .fa-chevron-left, .fa-chevron-right {
-  position: absolute;
   top: 50%;
-  left: 50%;
 }
 
 .modal-content {

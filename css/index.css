@@ -20,11 +20,10 @@ Element article (main)
     display: flex;
     flex-direction: column;
     align-items: center;
-    opacity: 0.6;
     transition: 0.4s ease-in-out;
 }
 .photographer:hover {
-    opacity: 1;
+    opacity: 0.6;
 }
 .photographer_section article img {
     height: 200px;

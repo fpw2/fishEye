@@ -1,17 +1,10 @@
 /*********************** Recuperation de l'id Photographer dans l'url ******************/ 
-
+/*global idPhotographer */
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const idPhotographer = urlParams.get("id")
 
 /***************************************************************************************/
-
-/**
- * Incrémentation like
- */
-function increment(data) {
-    return data += 1 
-}
 
 class PhotographerPage {
     constructor() {
@@ -28,60 +21,50 @@ class PhotographerPage {
 
         // DONNEES API 
         const photographersData = await this.photographerApi.getPhotographer()
-        //console.log("PhotographerData",photographersData[0])
         const mediasData = await this.photographerApi.getPhotographerMedia()
-        console.log("PhotographerMedia", mediasData)
-
-        // INCREMENTATION LIKE
-        // likes.addEventListener("click", increment(likes) {
-        //     return likes += 1
-        // })
-        // increment(mediasData.likes)
-
-
-
+        
         // HTML HEADER PHOTOGRAPHER 
-        const photographerTemplate = new PhotographerTemplate(photographersData[0])
+        const photographerTemplate = new PhotographerTemplate(photographersData)
         $photographerSection.innerHTML = photographerTemplate.createPhotographerPage()[0]
         $photographerPicture.innerHTML = photographerTemplate.createPhotographerPage()[1]
 
-        const like = mediasData.likes
-        console.log(like)
-        
+        // const incrementLikes = (media) => {
+        //     return media.likes = media.likes + 1
+        // }
+        // $like.addEventListener("click",incrementLikes(mediasData))
+
         // HTML MEDIA
-        const displayMedia = (objectMedia) => {
-            // initialisation 
-            let totalLikes = 0
-            $photographerMedia.innerHTML = ""
-            objectMedia.map((media,index) => {
-                //console.log(index)
-                // ajout d'un clé : totalLikes dans medias, valeur : media.likes
+        const displayMedia = (medias) => {
+
+            let totalLikes = 0 // initialisation à zéro
+            $photographerMedia.innerHTML = "" // j'efface le contenu à chaque changement 
+
+            medias.map((media,index) => {
+                // ajout d'un clé : totalLikes dans medias, valeur : media.totalLikes
                 totalLikes += media.likes
                 media.totalLikes = totalLikes
-                //console.log("totalLike",media.total)
-                const photographerTemplate = new PhotographerTemplate(photographersData[0], media)
-                //console.log("totalLike",totalLikes)
-                //console.log(photographerTemplate)
+                console.log("totalLike",media.totalLikes)
+                
+                const photographerTemplate = new PhotographerTemplate(photographersData, media)
                 $photographerMedia.innerHTML += photographerTemplate.createPhotographerMedia(index)[0]
-                //$mark.innerHTML = ""
-                $mark.innerHTML = photographerTemplate.createPhotographerMedia(index)[1]
+                $mark.innerHTML = photographerTemplate.createPhotographerMedia(index = null)[1]
             })
         }
 
         // CHOIX TRIE
-        displayMedia(sortBy("popularite", mediasData)) // affichage par défaut
+        displayMedia(getSortBy("popularite", mediasData)) // affichage par défaut
         $select.addEventListener('change', function () {
-            //console.log('selectedIndex => ' + this.selectedIndex);
+            console.log('selectedIndex => ' + this.selectedIndex);
             if (this.selectedIndex == 0) {
-                displayMedia(sortBy("popularite", mediasData))
+                displayMedia(getSortBy("popularite", mediasData))
                 return
             }
             if (this.selectedIndex == 1) {
-                displayMedia(sortBy("date", mediasData))
+                displayMedia(getSortBy("date", mediasData))
                 return
             }
             if (this.selectedIndex == 2) {
-                displayMedia(sortBy("titre", mediasData))
+                displayMedia(getSortBy("titre", mediasData))
                 return
             }
         })
@@ -90,3 +73,14 @@ class PhotographerPage {
 
 const init = new PhotographerPage()
 init.main()
+
+document.querySelector('body').addEventListener('click', function (e) {
+    if(e.target.classList.contains('like')){
+        e.target.parentNode.querySelector('span').textContent  = Number (  e.target.parentNode.querySelector('span').textContent)+ 1  
+    document.querySelector('.mark').querySelector('p')
+    .innerHTML =   Number ( document.querySelector('.mark').querySelector('p')
+    .textContent ) + 1 + ' <i class="fa-solid fa-heart"></i>'
+
+    }
+})
+

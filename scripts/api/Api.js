@@ -29,7 +29,8 @@ class Api {
             if (response.ok) {
                 let data = await response.json()
                 let photographers = data.photographers
-                const photographerResult = photographers.filter(photographer => {
+                // la méthode find() retourne un objet
+                const photographerResult = photographers.find(photographer => {
                     if (photographer.id == idPhotographer) {
                         return photographer
                     }

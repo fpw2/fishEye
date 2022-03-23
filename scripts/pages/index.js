@@ -9,7 +9,6 @@ class HomePage {
 
         // DONNEES API 
         const photographersData = await this.photographerApi.getPhotographersAll()
-        //console.log(photographersData)
 
         // HTML PHOTOGRAPHER
         photographersData.photographers.forEach(photographer => {
@@ -19,6 +18,7 @@ class HomePage {
         })
     }
 }
+
 const init = new HomePage()
 init.main()
 

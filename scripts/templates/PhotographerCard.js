@@ -5,7 +5,7 @@ class PhotographerTemplate {
         //console.log("photographer", photographer)
         //console.log("PhotographerCardMedia", medias)
 
-        // emballage = wrapper
+        // wrapper = emballage
         this.$wrapper = document.createElement('article')
     }
 
@@ -14,7 +14,7 @@ class PhotographerTemplate {
         const photographerCard =
             `
         <a href="/photographer.html?id=${this.photographer.id}" class="photographer">
-            <img src="assets/photographers/${this.photographer.portrait}" alt="assets/photographers/${this.photographer.portrait}">
+            <img src="assets/photographers/${this.photographer.portrait}" alt="photo ${this.photographer.name}">
             <h2>${this.photographer.name}</h2>
         </a>
         <h3 class="locality">${this.photographer.city}, ${this.photographer.country}</h3>
@@ -26,7 +26,7 @@ class PhotographerTemplate {
         return this.$wrapper
     }
 
-    // HTML PHOTOGRAPHER
+    // HTML PHOTOGRAPHER (header)
     createPhotographerPage() {
         const userCard =
             `
@@ -36,19 +36,20 @@ class PhotographerTemplate {
         `
         const imgCard =
             `
-        <img src="assets/photographers/${this.photographer.portrait}" alt="">
+        <img src="assets/photographers/${this.photographer.portrait}" alt="photo ${this.photographer.name}">
         `
         const array = [userCard, imgCard]
         return array
     }
 
-    // HTML PHOTOGRAPHER
+    // HTML PHOTOGRAPHER (media)
     createPhotographerMedia(index) {
         //console.log(index)
         //console.log("like",this.medias.like)
+
         // je vérifie que le chemin existe si c'est le cas ? j'affiche sinon : je ne mets rien
-        const image = this.medias.image ? `<img class="image pointer" src="Sample Photos/${this.photographer.name}/${this.medias.image}"onclick="openLightbox();currentSlide(${index+1})" class="hover-shadow preview" alt="Sample Photos/${this.photographer.name}/${this.medias.image}"></img>` : ""
-        const video = this.medias.video ? `<video controls class="video card-video pointer" src="Sample Photos/${this.photographer.name}/${this.medias.video}" onclick="openLightbox();currentSlide(1)" class="hover-shadow preview">> </video>` : ""
+        const image = this.medias.image ? `<img class="image pointer" src="Sample Photos/${this.photographer.name}/${this.medias.image}"onclick="openLightbox()" class="preview" alt="photo ${this.medias.image}"></img>` : ""
+        const video = this.medias.video ? `<video controls class="video card-video pointer" src="Sample Photos/${this.photographer.name}/${this.medias.video}" onclick="openLightbox();currentSlide(${index+1})" class="preview" alt="video ${this.medias.video}"></video>` : ""
         const userMedias =
             `
         <!-- Images used to open the lightbox -->
@@ -59,25 +60,26 @@ class PhotographerTemplate {
             </div>
             <div class="card-content">
                 <h3 class="card-title">${this.medias.title}</h3>
-                <div class="card-like">
+                <div class="card-like pointer" aria-label="likes">
                     <span>${this.medias.likes}</span>
-                    <i class="like fa-solid fa-heart"></i>
+                    <i class="like fa-solid fa-heart"></i> 
                 </div>
             </div>
         </article>
 
         <!-- The Modal/Lightbox -->
-        <div id="lightbox">
+        <div id="lightbox" aria-label="image closeup view">
             <div class="modal-content">
                 <div class="slide">
+                    <div>${index}/10</div>       
                     ${image}
                     ${video}
                     <span id="caption">${this.medias.title}</span>
                 </div>
-                <a class="close pointer" onclick="closeLightbox()"><i class="fa-duotone fa-xmark fa-2x"></i></a>
+                <div class="close pointer" onclick="closeLightbox()"><i class="fa-solid fa-xmark fa-3x"></i></div>
                 <!-- Next/previous controls -->
-                <a class="previous" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left fa-3x"></i></a>
-                <a class="next" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right fa-3x"></i></a>
+                <a class="previous pointer" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left fa-3x"></i></a>
+                <a class="next pointer" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right fa-3x"></i></a>
             </div>
         </div>
         `

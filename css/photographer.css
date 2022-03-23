@@ -47,6 +47,11 @@
     cursor: pointer;
 }
 
+.contact_button-hover:hover{
+    color: #0d0807;
+    background-color: #db8875;
+}
+
 .photograph-picture {
     padding-right: 40px;
 }
@@ -66,7 +71,7 @@
 }
 
 .tagline-page {
-    color: grey;
+    color: black;
     font-weight: 200;
 }
 

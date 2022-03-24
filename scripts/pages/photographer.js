@@ -1,10 +1,7 @@
-/*********************** Recuperation de l'id Photographer dans l'url ******************/ 
-/*global idPhotographer */
+/* Recuperation de l'id Photographer dans l'url */ 
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const idPhotographer = urlParams.get("id")
-
-/***************************************************************************************/
 
 class PhotographerPage {
     constructor() {
@@ -28,10 +25,10 @@ class PhotographerPage {
         $photographerSection.innerHTML = photographerTemplate.createPhotographerPage()[0]
         $photographerPicture.innerHTML = photographerTemplate.createPhotographerPage()[1]
 
-        // const incrementLikes = (media) => {
+        // function incrementLikes(media) {
         //     return media.likes = media.likes + 1
         // }
-        // $like.addEventListener("click",incrementLikes(mediasData))
+        // $like.forEach((click) => click.addEventListener("click",incrementLikes(mediasData))
 
         // HTML MEDIA
         const displayMedia = (medias) => {
@@ -43,7 +40,7 @@ class PhotographerPage {
                 // ajout d'un clé : totalLikes dans medias, valeur : media.totalLikes
                 totalLikes += media.likes
                 media.totalLikes = totalLikes
-                console.log("totalLike",media.totalLikes)
+                //console.log("totalLike",media.totalLikes)
                 
                 const photographerTemplate = new PhotographerTemplate(photographersData, media)
                 $photographerMedia.innerHTML += photographerTemplate.createPhotographerMedia(index)[0]

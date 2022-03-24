@@ -48,8 +48,8 @@ class PhotographerTemplate {
         //console.log("like",this.medias.like)
 
         // je vérifie que le chemin existe si c'est le cas ? j'affiche sinon : je ne mets rien
-        const image = this.medias.image ? `<img class="image pointer" src="Sample Photos/${this.photographer.name}/${this.medias.image}"onclick="openLightbox()" class="preview" alt="photo ${this.medias.image}"></img>` : ""
-        const video = this.medias.video ? `<video controls class="video card-video pointer" src="Sample Photos/${this.photographer.name}/${this.medias.video}" onclick="openLightbox();currentSlide(${index+1})" class="preview" alt="video ${this.medias.video}"></video>` : ""
+        const image = this.medias.image ? `<img class="image pointer" src="Sample Photos/${this.photographer.name}/${this.medias.image}"onclick="openLightbox();currentSlide(${index+1})" alt="photo ${this.medias.image}"></img>` : ""
+        const video = this.medias.video ? `<video controls class="video card-video pointer" src="Sample Photos/${this.photographer.name}/${this.medias.video}" onclick="openLightbox();currentSlide(${index+1})" alt="video ${this.medias.video}"></video>` : ""
         const userMedias =
             `
         <!-- Images used to open the lightbox -->
@@ -71,7 +71,6 @@ class PhotographerTemplate {
         <div id="lightbox" aria-label="image closeup view">
             <div class="modal-content">
                 <div class="slide">
-                    <div>${index}/10</div>       
                     ${image}
                     ${video}
                     <span id="caption">${this.medias.title}</span>

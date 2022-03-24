@@ -9,8 +9,9 @@ const lastFocusableElement = focusableContent[focusableContent.length - 1]; // g
 
 
 document.addEventListener('keydown', function(e) {
-  let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
-
+  console.log(e.key)
+  //document.getElementById("first").focus()
+  let isTabPressed = e.key === 'Tab' 
   if (!isTabPressed) {
     return;
   }

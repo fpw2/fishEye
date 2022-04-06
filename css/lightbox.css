@@ -1,30 +1,28 @@
-#lightbox {
+.lightbox-container {
   display: none;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
   width: 100%;
   height: 100%;
   overflow: auto;
   background-color: white;
+  z-index: 9999;
 }
 
 .modal-content {
-  max-height: 100vh !important;
+  height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
 }
 
 .slide {
-  /*display: none;*/
   margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
   height: 90%;
   width: 80%;
-  z-index: 9999;
 }
 
 .slide img, .slide video {

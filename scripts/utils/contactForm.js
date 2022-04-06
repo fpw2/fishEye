@@ -9,7 +9,7 @@ const validate = document.querySelector(".submit")
 // Affichage modal contactez-moi
 function displayModal() {
 	modal.style.display = "block";
-    container.classList.add("fuzzy")
+    container.classList.add("fuzzy") // flou
 }
 
 // Fermeture modal contactez-moi

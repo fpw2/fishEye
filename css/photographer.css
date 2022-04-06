@@ -1,5 +1,5 @@
 /* bandeau fixe */
-.mark {
+.banner-info {
     position: fixed;
     bottom: 0;
     right: 40px;
@@ -12,7 +12,7 @@
     font-weight: bold;
     justify-content: space-between;
 }
-.mark p{
+.banner-info p{
     padding: 0 30px;
 }
 /*******************
@@ -100,7 +100,6 @@
     object-fit: cover;
     border-radius: 5px;
 }
-
 
 .card-content{
     display: flex;

@@ -1,14 +1,13 @@
 class PhotographerTemplate {
     constructor(photographer, medias) {
+        // this(variable d'instance) permet de capturer nos variables et de les enregistrer
+        // cela nous permet de les utiliser dans toutes les méthodes
         this.photographer = photographer
         this.medias = medias
-        //console.log("photographer", photographer)
-        //console.log("PhotographerCardMedia", medias)
-
         // wrapper = emballage
+        // set an instance variable (wihtout capturing a constructor param)
         this.$wrapper = document.createElement('article')
     }
-
     // HTML INDEX
     createPhotographerCard() {
         const photographerCard =
@@ -25,7 +24,6 @@ class PhotographerTemplate {
         this.$wrapper.innerHTML = photographerCard
         return this.$wrapper
     }
-
     // HTML PHOTOGRAPHER (header)
     createPhotographerPage() {
         const userCard =
@@ -41,15 +39,18 @@ class PhotographerTemplate {
         const array = [userCard, imgCard]
         return array
     }
-
     // HTML PHOTOGRAPHER (media)
     createPhotographerMedia(index) {
-        //console.log(index)
-        //console.log("like",this.medias.like)
+        //index permet de numeroter mes images 
 
         // je vérifie que le chemin existe si c'est le cas ? j'affiche sinon : je ne mets rien
-        const image = this.medias.image ? `<img class="image pointer" src="Sample Photos/${this.photographer.name}/${this.medias.image}"onclick="openLightbox();currentSlide(${index+1})" alt="photo ${this.medias.image}"></img>` : ""
-        const video = this.medias.video ? `<video controls class="video card-video pointer" src="Sample Photos/${this.photographer.name}/${this.medias.video}" onclick="openLightbox();currentSlide(${index+1})" alt="video ${this.medias.video}"></video>` : ""
+        const renderImg = `<img class="image pointer lightbox-enabled" src="Sample Photos/${this.photographer.name}/${this.medias.image}" data-imagesrc="Sample Photos/${this.photographer.name}/${this.medias.image}" alt="${this.medias.image}"></img>`
+        const renderVideo = `<video controls class="video pointer lightbox-enabled" src="Sample Photos/${this.photographer.name}/${this.medias.video}" data-imagesrc="Sample Photos/${this.photographer.name}/${this.medias.video}" alt="${this.medias.video}"></video>`
+
+        const image = this.medias.image ? `${renderImg}` : ""
+        const video = this.medias.video ? `${renderVideo}` : ""
+
+
         const userMedias =
             `
         <!-- Images used to open the lightbox -->
@@ -60,25 +61,25 @@ class PhotographerTemplate {
             </div>
             <div class="card-content">
                 <h3 class="card-title">${this.medias.title}</h3>
-                <div class="card-like pointer" aria-label="likes">
-                    <span>${this.medias.likes}</span>
-                    <i class="like fa-solid fa-heart"></i> 
+                <div class="card-like" aria-label="likes">
+                    <span class="add-like">${this.medias.likes}</span>
+                    <i class="pointer like fa-solid fa-heart"></i> 
                 </div>
             </div>
         </article>
 
         <!-- The Modal/Lightbox -->
-        <div id="lightbox" aria-label="image closeup view">
+        <div id="lightbox" class="lightbox-container" aria-label="image closeup view">
             <div class="modal-content">
                 <div class="slide">
-                    ${image}
-                    ${video}
+                    <img class="lightbox-img">
+                    <video class="lightbox-video">
                     <span id="caption">${this.medias.title}</span>
                 </div>
-                <div class="close pointer" onclick="closeLightbox()"><i class="fa-solid fa-xmark fa-3x"></i></div>
+                <div class="close pointer"><i class="fa-solid fa-xmark fa-3x"></i></div>
                 <!-- Next/previous controls -->
-                <a class="previous pointer" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left fa-3x"></i></a>
-                <a class="next pointer" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right fa-3x"></i></a>
+                <a id="Left" class="lightbox-btn pointer"><i class="fa-solid fa-chevron-left fa-3x"></i></a>
+                <a id="Right" class="lightbox-btn pointer"><i class="fa-solid fa-chevron-right fa-3x"></i></a>
             </div>
         </div>
         `
@@ -87,8 +88,8 @@ class PhotographerTemplate {
             `
         <p>${this.medias.totalLikes} <i class="fa-solid fa-heart"></i></p>
         <p>${this.photographer.price} € / jour</p>
-       
-       `
+        `
+
         const array = [userMedias, staticCard]
         return array
     }

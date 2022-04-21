@@ -47,8 +47,8 @@ class PhotographerTemplate {
         const renderImg = `<img class="image pointer lightbox-enabled" src="Sample Photos/${this.photographer.name}/${this.medias.image}" data-imagesrc="Sample Photos/${this.photographer.name}/${this.medias.image}" alt="${this.medias.image}"></img>`
         const renderVideo = `<video controls class="video pointer lightbox-enabled" src="Sample Photos/${this.photographer.name}/${this.medias.video}" data-imagesrc="Sample Photos/${this.photographer.name}/${this.medias.video}" alt="${this.medias.video}"></video>`
 
-        const image = this.medias.image ? `${renderImg}` : ""
-        const video = this.medias.video ? `${renderVideo}` : ""
+        const media = this.medias.image ? `${renderImg}` : `${renderVideo}`
+        //const video = this.medias.video ? `${renderVideo}` : ""
 
 
         const userMedias =
@@ -56,8 +56,7 @@ class PhotographerTemplate {
         <!-- Images used to open the lightbox -->
         <article class="gallery">
             <div class="card-gallery">
-                ${image}
-                ${video}
+                ${media}
             </div>
             <div class="card-content">
                 <h3 class="card-title">${this.medias.title}</h3>
@@ -73,7 +72,7 @@ class PhotographerTemplate {
             <div class="modal-content">
                 <div class="slide">
                     <img class="lightbox-img">
-                    <video class="lightbox-video">
+                    <video controls class="lightbox-video">
                     <span id="caption">${this.medias.title}</span>
                 </div>
                 <div class="close pointer"><i class="fa-solid fa-xmark fa-3x"></i></div>

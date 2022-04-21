@@ -9,6 +9,7 @@ const validate = document.querySelector(".submit")
 // Affichage modal contactez-moi
 function displayModal() {
 	modal.style.display = "block";
+	firstName.focus()
     container.classList.add("fuzzy") // flou
 }
 

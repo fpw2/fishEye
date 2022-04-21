@@ -1,3 +1,7 @@
+import {getLike} from "../utils/likes"
+
+
+
 /* Recuperation de l'id Photographer dans l'url */
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
@@ -68,13 +72,17 @@ class PhotographerPage {
 
             const setActiveImg = (img) => { // img =>
                 console.log("video :", img.dataset.imagesrc.includes('mp4'))
+
                 if (img.dataset.imagesrc.includes('mp4')) {
                     $lightboxVideo.src = img.dataset.imagesrc
                     $lightboxVideo.style.display = "block"
+                    $lightboxImg.style.display = "none"
                 } else {
                     $lightboxImg.src = img.dataset.imagesrc  // data-imagesrc
+                    $lightboxImg.style.display = "block"
+                    $lightboxVideo.style.display = "none"
                 }
-                $lightboxVideo.style.display = "none"
+                
                 console.log("set", img)
                 console.log("src", $lightboxImg.src)
                 activeImg = lightboxArray.indexOf(img) // numéro de l'image
@@ -106,24 +114,28 @@ class PhotographerPage {
                 if (e.key.includes('Left') || e.key.includes('Right')) {
                     e.preventDefault()
                     transitionSlideHandler(e.key)
+                }if(e.key.includes('Escape')){
+                    hideLightBox()
                 }
             })
 
-            //Incrementation like
-            let $likes = document.querySelectorAll(".like")
-            $likes.forEach((like) => {
-                like.addEventListener("click", (e) => {
-                    //console.log(e.target.previousElementSibling.textContent)
-                    console.log(e.target.previousElementSibling)
-                    let $numberLikeTxt = e.target.previousElementSibling
-                    let numberLikeTxt = like.previousElementSibling.textContent
-                    numberLikeTxt = Number(numberLikeTxt) + 1
-                    $numberLikeTxt.textContent = numberLikeTxt
-                    console.log($numberLikeTxt)
-                    //console.log(e.target)
-                    document.querySelector('.banner-info').querySelector('p').innerHTML = Number(document.querySelector('.banner-info').querySelector('p').textContent) + 1 + ' <i class="fa-solid fa-heart"></i>'
-                })
-            })
+            // //Incrementation like
+            // let $likes = document.querySelectorAll(".like")
+            // $likes.forEach((like) => {
+            //     like.addEventListener("click", (e) => {
+            //         //console.log(e.target.previousElementSibling.textContent)
+            //         console.log(e.target.previousElementSibling)
+            //         let $numberLikeTxt = e.target.previousElementSibling
+            //         let numberLikeTxt = like.previousElementSibling.textContent
+            //         numberLikeTxt = Number(numberLikeTxt) + 1
+            //         $numberLikeTxt.textContent = numberLikeTxt
+            //         console.log($numberLikeTxt)
+            //         //console.log(e.target)
+            //         document.querySelector('.banner-info').querySelector('p').innerHTML = Number(document.querySelector('.banner-info').querySelector('p').textContent) + 1 + ' <i class="fa-solid fa-heart"></i>'
+            //     })
+            // })
+            getLike()
+
         }
 
         // CHOIX TRIE

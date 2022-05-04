@@ -40,7 +40,7 @@ class PhotographerTemplate {
         return array
     }
     // HTML PHOTOGRAPHER (media)
-    createPhotographerMedia(index) {
+    createPhotographerMedia() {
         //index permet de numeroter mes images 
 
         // je vérifie que le chemin existe si c'est le cas ? j'affiche sinon : je ne mets rien

@@ -4,7 +4,7 @@ const modal = document.getElementById("contact_modal");
 const firstName = document.getElementById("first")
 const lastName = document.getElementById("last")
 const email = document.getElementById("email")
-const validate = document.querySelector(".submit")
+const contactForm = document.querySelector("#contact-form")
 
 // Affichage modal contactez-moi
 function displayModal() {
@@ -52,9 +52,9 @@ email.oninvalid = function(e) {
 	}
 }
 
-validate.addEventListener("click", function(e){
-    e.preventDefault
-    if(!firstName.oninvalid){
-        alert("envoyé")
-    }
-})
+// contactForm.addEventListener("submit", (e) => {
+//     e.preventDefault
+//     if(!firstName.oninvalid){
+//         closeModal()
+//     }
+// })

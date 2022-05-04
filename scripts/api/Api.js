@@ -1,7 +1,4 @@
 class Api {
-    /**
-     * @param {string} url 
-     */
     constructor(url) {
         this.url = url
     }

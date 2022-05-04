@@ -81,10 +81,10 @@ form textarea {
     height: 180px;
 }
 
-input:focus {
+/* input:focus {
     outline: none;
     border: 2px solid red;
-}
+} */
 
 .notice {
     padding-top: 10px;

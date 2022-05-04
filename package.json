@@ -1,0 +1,29 @@
+{
+  "name": "projet-6-fisheye",
+  "version": "1.0.0",
+  "description": "Rien à installer ici, il suffit de cloner le projet.\r ##\r ![Alt text](assets/fisheye.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fpw2/Projet-6-FishEye.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fpw2/Projet-6-FishEye/issues"
+  },
+  "homepage": "https://github.com/fpw2/Projet-6-FishEye#readme",
+  "devDependencies": {
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.6.2"
+  },
+  "dependencies": {
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
+}

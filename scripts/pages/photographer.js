@@ -1,11 +1,8 @@
-import {getLike} from "../utils/likes"
-
-
-
 /* Recuperation de l'id Photographer dans l'url */
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const idPhotographer = urlParams.get("id")
+console.log(idPhotographer)
 
 class PhotographerPage {
     constructor() {
@@ -53,7 +50,7 @@ class PhotographerPage {
             const $lightboxImg = document.querySelector(".lightbox-img")
             const $lightboxVideo = document.querySelector(".lightbox-video")
             const $lightboxBtns = document.querySelectorAll(".lightbox-btn")
-            const $lightboxCaption = document.getElementById("caption")
+            //const $lightboxCaption = document.getElementById("caption")
             let activeImg
 
             const showLightBox = () => {$lightboxContainer.style.display = "block"}
@@ -110,32 +107,18 @@ class PhotographerPage {
             }
 
             window.addEventListener('keydown', (e) => { // écoute des touches pressées
-                console.log(e.key)
+                console.log(e.key) // m'indique quelle touche a été enfoncé
                 if (e.key.includes('Left') || e.key.includes('Right')) {
                     e.preventDefault()
                     transitionSlideHandler(e.key)
                 }if(e.key.includes('Escape')){
                     hideLightBox()
+                    closeModal()
                 }
             })
 
             // //Incrementation like
-            // let $likes = document.querySelectorAll(".like")
-            // $likes.forEach((like) => {
-            //     like.addEventListener("click", (e) => {
-            //         //console.log(e.target.previousElementSibling.textContent)
-            //         console.log(e.target.previousElementSibling)
-            //         let $numberLikeTxt = e.target.previousElementSibling
-            //         let numberLikeTxt = like.previousElementSibling.textContent
-            //         numberLikeTxt = Number(numberLikeTxt) + 1
-            //         $numberLikeTxt.textContent = numberLikeTxt
-            //         console.log($numberLikeTxt)
-            //         //console.log(e.target)
-            //         document.querySelector('.banner-info').querySelector('p').innerHTML = Number(document.querySelector('.banner-info').querySelector('p').textContent) + 1 + ' <i class="fa-solid fa-heart"></i>'
-            //     })
-            // })
             getLike()
-
         }
 
         // CHOIX TRIE
@@ -157,6 +140,5 @@ class PhotographerPage {
         })
     }
 }
-
-const init = new PhotographerPage()
-init.main()
+const init = new PhotographerPage();
+init.main();

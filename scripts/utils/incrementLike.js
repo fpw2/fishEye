@@ -1,5 +1,6 @@
 // Incrementation like
-function getLike() {
+/* exported getLike */
+const getLike = () => {
     let $likes = document.querySelectorAll(".like")
     $likes.forEach((like) => {
         like.addEventListener("click", (e) => {
@@ -18,4 +19,3 @@ function getLike() {
     })
 }
 
-getLike()

@@ -1,6 +1,5 @@
 //Incrementation like
-export function getLike() {
-    alert("cc")
+function getLike() {
     let $likes = document.querySelectorAll(".like")
     $likes.forEach((like) => {
         like.addEventListener("click", (e) => {

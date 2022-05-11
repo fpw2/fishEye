@@ -118,6 +118,8 @@
     color: #ac330f;
     font-weight: bold;
     align-self: center;
-}
+}       
 
-
+:focus {
+    border: 2px solid #0d0807; 
+}   

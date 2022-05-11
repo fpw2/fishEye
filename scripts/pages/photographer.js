@@ -1,13 +1,17 @@
 /* Recuperation de l'id Photographer dans l'url */
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
-const idPhotographer = urlParams.get("id")
-console.log(idPhotographer)
 
 class PhotographerPage {
+    /**
+     * Récupère les données de l'API
+     */
     constructor() {
         this.photographerApi = new Api('/data/photographers.json')
     }
+    /**
+     * Créé l'en tête photographe avec les medias associés de la page photographer 
+     */
     async main() {
         // DOM
         const $photographerSection = document.querySelector(".photograph-section")
@@ -17,8 +21,8 @@ class PhotographerPage {
         let $select = document.querySelector('#select');
 
         // DONNEES API 
-        const photographersData = await this.photographerApi.getPhotographer()
-        const mediasData = await this.photographerApi.getPhotographerMedia()
+        const photographersData = await this.photographerApi.getPhotographer(urlParams.get("id"))
+        const mediasData = await this.photographerApi.getPhotographerMedia(urlParams.get("id"))
 
         // HTML HEADER  
         const photographerTemplate = new PhotographerTemplate(photographersData)
@@ -26,7 +30,12 @@ class PhotographerPage {
         $photographerPicture.innerHTML = photographerTemplate.createPhotographerPage()[1]
 
         // HTML MEDIA 
+        /**
+         * Créé le html des medias
+         * @param {object} medias du photographer
+         */
         const displayMedia = (medias) => {
+            console.log(medias)
             let totalLikes = 0 // initialisation à zéro
             $photographerMedia.innerHTML = "" // j'efface le contenu à chaque changement 
 
@@ -48,19 +57,19 @@ class PhotographerPage {
             console.log('selectedIndex => ' + this.selectedIndex);
             if (this.selectedIndex == 0) {
                 displayMedia(getSortBy("popularite", mediasData))
-                return
             }
             if (this.selectedIndex == 1) {
                 displayMedia(getSortBy("date", mediasData))
-                return
             }
             if (this.selectedIndex == 2) {
                 displayMedia(getSortBy("titre", mediasData))
-                return
             }
+            // Appel des fonctions au changement
+            getLike()
+            getLightbox()
         })
 
-        //Appel des fonctions
+        // Appel des fonctions au chargement
         getLike()
         getLightbox()
 

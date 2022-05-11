@@ -1,4 +1,11 @@
+
 class PhotographerTemplate {
+    /**
+     * Récupère les données pour pouvoir les utiliser dans mes méthodes
+     * @param {object} données des photographes 
+     * @param {object} données des medias 
+     * @returns {html}
+     */
     constructor(photographer, medias) {
         // this(variable d'instance) permet de capturer nos variables et de les enregistrer
         // cela nous permet de les utiliser dans toutes les méthodes
@@ -8,7 +15,11 @@ class PhotographerTemplate {
         // set an instance variable (wihtout capturing a constructor param)
         this.$wrapper = document.createElement('article')
     }
-    // HTML INDEX
+    
+    /**
+     * Fontion qui créé la carte d'un photographe sur la page index
+     * @returns {html} html
+     */
     createPhotographerCard() {
         const photographerCard =
             `
@@ -24,7 +35,10 @@ class PhotographerTemplate {
         this.$wrapper.innerHTML = photographerCard
         return this.$wrapper
     }
-    // HTML PHOTOGRAPHER (header)
+    /**
+     * Fontion qui créé l'en tête d'un photographe sur la page photographer
+     * @returns {html} html
+     */
     createPhotographerPage() {
         const userCard =
             `
@@ -39,17 +53,17 @@ class PhotographerTemplate {
         const array = [userCard, imgCard]
         return array
     }
-    // HTML PHOTOGRAPHER (media)
-    createPhotographerMedia() {
-        //index permet de numeroter mes images 
+    /**
+     * Fontion qui créé les medias d'un photographe et le bandeau sur la page photographer
+     * @param {string} numérote chaque media
+     * @returns {html} html
+     */
+    createPhotographerMedia(index) {    
+        const renderImg = `<img class="image pointer lightbox-enabled" tabindex="${index+4}" src="Sample Photos/${this.photographer.name}/${this.medias.image}" data-root="Sample Photos/${this.photographer.name}/${this.medias.image}" alt="${this.medias.image}"></img>`
+        const renderVideo = `<video class="video pointer lightbox-enabled" tabindex="${index+4}" src="Sample Photos/${this.photographer.name}/${this.medias.video}" data-root="Sample Photos/${this.photographer.name}/${this.medias.video}" alt="${this.medias.video}"></video>`
 
-        // je vérifie que le chemin existe si c'est le cas ? j'affiche sinon : je ne mets rien
-        const renderImg = `<img class="image pointer lightbox-enabled" src="Sample Photos/${this.photographer.name}/${this.medias.image}" data-imagesrc="Sample Photos/${this.photographer.name}/${this.medias.image}" alt="${this.medias.image}"></img>`
-        const renderVideo = `<video controls class="video pointer lightbox-enabled" src="Sample Photos/${this.photographer.name}/${this.medias.video}" data-imagesrc="Sample Photos/${this.photographer.name}/${this.medias.video}" alt="${this.medias.video}"></video>`
-
+        // si le media contien une image je l'affiche sinon j'affiche la vidéo
         const media = this.medias.image ? `${renderImg}` : `${renderVideo}`
-        //const video = this.medias.video ? `${renderVideo}` : ""
-
 
         const userMedias =
             `
@@ -72,8 +86,8 @@ class PhotographerTemplate {
             <div class="modal-content">
                 <div class="slide">
                     <img class="lightbox-img">
-                    <video controls class="lightbox-video">
-                    <span id="caption">${this.medias.title}</span>
+                    <video autoplay controls class="lightbox-video"></video>
+                    <span id="caption"></span>
                 </div>
                 <div class="close pointer"><i class="fa-solid fa-xmark fa-3x"></i></div>
                 <!-- Next/previous controls -->

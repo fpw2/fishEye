@@ -1,13 +1,15 @@
 /**
  * Fonction de trie en fonction du paramètre et des données
- * @param {SELECT} sortBy 
- * @param {API} datas 
+ * @param {string} sortBy option du select
+ * @param {object} datas de l'API media
+ * @returns {object} Medias
  */
 function getSortBy(sortBy, datas) {
     if (sortBy == "date") {
         // Date.parse écrit notre date sous format "yyyy-mm-dd" par exemple en un nombre
         // 1 : -1  ordre décroissant
         const sortByDate = datas.sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? 1 : -1)
+        console.log(sortByDate)
         return sortByDate
     }
     if (sortBy == "titre") {

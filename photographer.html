@@ -21,20 +21,21 @@
   <div class="container">
     <header>
       <a href="/index.html">
-        <img src="assets/images/logo.png" class="logo" alt="fisheye home page" />
-      </a>
+        <img src="assets/images/logo.png" class="logo" tabindex="1" alt="fisheye home page" />
+    </a>      
     </header>
     <main id="main">
       <div aria-label="heading photographer" class="photograph-header">
         <div class="photograph-section"></div>
-        <button aria-label="contact me" class="contact_button contact_button-hover" onclick="displayModal()">Contactez-moi</button>
+        <button aria-label="contact me" class="contact_button contact_button-hover" onclick="displayModal()"
+        tabindex="2">Contactez-moi</button>
         <div class="photograph-picture"></div>
       </div>
     </main>
     <section class="media">
       <div class="select-block">
         <label for="select" >Trier par </label>
-        <select name="select" id="select">
+        <select name="select" id="select" tabindex="3">
           <option>Popularité</option>
           <option>Date</option>
           <option>Titre</option>
@@ -54,7 +55,7 @@
         <div>
           <div>
             <label for="first">Prénom *</label>
-            <input type="text" id="first" pattern="[a-zA-Z]{2,}" required autofocus>
+            <input type="text" id="first" pattern="[a-zA-Z]{2,}" required>
           </div>
           <div>
             <label for="last">Nom *</label>
@@ -90,7 +91,6 @@
   <script defer src="/scripts/functions/sortBy.js"></script>
 
   <!-- Utils -->
-  <script defer src="/scripts/utils/focus.js"></script>
   <script defer src="/scripts/utils/likes.js"></script>
 
 </body>

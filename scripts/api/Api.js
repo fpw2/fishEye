@@ -1,7 +1,16 @@
 class Api {
+    /**
+     * Récupère les données de l'API
+     * @param {string} chemin des données
+     * @returns {object} datas
+     */
     constructor(url) {
         this.url = url
     }
+    /**
+     * Récupère tous les photographes 
+     * @returns {object} photographers si trouvé sinon undefined
+     */
     async getPhotographersAll() {
         try {
             let response = await fetch(this.url)
@@ -20,7 +29,12 @@ class Api {
             console.log(e)
         }
     }
-    async getPhotographer() {
+    /**
+     * Récupère un photographer par son identifiant
+     * @param {string} idPhotographer identifiant photographer
+     * @returns {object} Photographe si trouvé sinon undefined
+     */
+    async getPhotographer(idPhotographer) {
         try {
             let response = await fetch(this.url)
             if (response.ok) {
@@ -42,7 +56,12 @@ class Api {
             console.log(e)
         }
     }
-    async getPhotographerMedia() {
+    /**
+     * Récupère les médias d'un photographer par son identifiant
+     * @param {string} idPhotographer identifiant photographer
+     * @returns {object} medias si trouvé sinon undefined
+     */
+    async getPhotographerMedia(idPhotographer) {
         try {
             let response = await fetch(this.url)
             if (response.ok) {
@@ -60,6 +79,4 @@ class Api {
             console.log(e)
         }
     }
-
-
 }

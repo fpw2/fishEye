@@ -1,4 +1,8 @@
+/**
+ * Créé une lightbox et parcoure les medias
+ */
 function getLightbox() {
+    // DOM
     const $lightboxEnabled = document.querySelectorAll(".lightbox-enabled")
     const lightboxArray = Array.from($lightboxEnabled)
     const lastImage = lightboxArray.length
@@ -7,16 +11,23 @@ function getLightbox() {
     const $lightboxImg = document.querySelector(".lightbox-img")
     const $lightboxVideo = document.querySelector(".lightbox-video")
     const $lightboxBtns = document.querySelectorAll(".lightbox-btn")
-    //const $lightboxCaption = document.getElementById("caption")
     let activeImg
 
+    /**
+     * affiche ma lightbox
+     */
     const showLightBox = () => {
         $lightboxContainer.style.display = "block"
     }
+
+    /**
+     * cache ma lightbox
+     */
     const hideLightBox = () => {
         $lightboxContainer.style.display = "none"
     }
 
+    // pour chaque click sur une image j'ouvre la lightbox avec l'image correspondante
     $lightboxEnabled.forEach(img => {
         img.addEventListener("click", () => {
             showLightBox()
@@ -24,36 +35,52 @@ function getLightbox() {
         })
     })
 
+    // permet d'ouvrir ma lightbox avec la touche Enter au focus
+    document.addEventListener("keyup", (e) => {
+        if(e.key === "Enter"){
+            // activeElement ici permet de focus img au click = Enter
+            document.activeElement.click()
+        }
+    })
+
+    // fermeture de la lightbox au click sur la croix
     $lightboxDisabled.addEventListener("click", () => {
         hideLightBox()
     })
 
-    const setActiveImg = (img) => { // img =>
-        console.log("video :", img.dataset.imagesrc.includes('mp4'))
-
-        if (img.dataset.imagesrc.includes('mp4')) {
-            $lightboxVideo.src = img.dataset.imagesrc
+    /**
+     * Affichage image ou video lightbox + description
+     * @param {string} chemin image ou video
+     */
+    const setActiveImg = (img) => { 
+        if (img.dataset.root.includes('mp4')) { // dataset va chercher l'attribut data-root => root
+            $lightboxVideo.src = img.dataset.root
             $lightboxVideo.style.display = "block"
             $lightboxImg.style.display = "none"
         } else {
-            $lightboxImg.src = img.dataset.imagesrc // data-imagesrc
+            $lightboxImg.src = img.dataset.root  
             $lightboxImg.style.display = "block"
             $lightboxVideo.style.display = "none"
         }
-
-        console.log("set", img)
-        console.log("src", $lightboxImg.src)
         activeImg = lightboxArray.indexOf(img) // numéro de l'image
-        console.log("active", activeImg)
+
+        // closest remonte au parent de l'élément et je vais chercher dans le parent l'enfant que je veux sélectionner
+        // ainsi je peux insérer un contenu à un autre endroit
+        $lightboxImg.closest('.slide').querySelector('#caption').innerHTML = img.closest('.gallery').querySelector('.card-title').innerHTML
+
     }
 
-    $lightboxBtns.forEach(btn => {
+    $lightboxBtns.forEach(btn => { // cible les flèches lightbox
         btn.addEventListener("click", (e) => {
-            transitionSlideHandler(e.currentTarget.id) // cible les flèches clickées
+            transitionSlideHandler(e.currentTarget.id) // me donne l'id de la flèche clické
         })
     })
 
-    const transitionSlideHandler = (moveItem) => { // gestionnaire de transition des diapositives
+    /**
+     * gestionnaire de transition des diapositives
+     * @param {string} Right or Left
+     */
+    const transitionSlideHandler = (moveItem) => {  
         moveItem.includes("Left") ? transitionSlidePrevious() : transitionSlideNext()
     }
 
@@ -68,14 +95,16 @@ function getLightbox() {
     }
 
     window.addEventListener('keydown', (e) => { // écoute des touches pressées
-        console.log(e.key) // m'indique quelle touche a été enfoncé
-        if (e.key.includes('Left') || e.key.includes('Right')) {
-            e.preventDefault()
-            transitionSlideHandler(e.key)
-        }
-        if (e.key.includes('Escape')) {
-            hideLightBox()
-            closeModal()
+        //console.log(e.key) // m'indique quelle touche a été enfoncé
+        if($lightboxContainer.style.display == "block"){
+            if (e.key.includes('Left') || e.key.includes('Right')) {
+                e.preventDefault()
+                transitionSlideHandler(e.key)
+            }
+            if (e.key.includes('Escape')) {
+                hideLightBox()
+                closeModal() 
+            }
         }
     })
 }

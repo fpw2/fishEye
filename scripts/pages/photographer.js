@@ -43,7 +43,6 @@ class PhotographerPage {
                 // ajout d'un clé : totalLikes dans medias, valeur : media.totalLikes
                 totalLikes += media.likes
                 media.totalLikes = totalLikes
-                //console.log("totalLike",media.totalLikes)
 
                 const photographerTemplate = new PhotographerTemplate(photographersData, media)
                 $photographerMedia.innerHTML += photographerTemplate.createPhotographerMedia(index)[0]
@@ -54,7 +53,6 @@ class PhotographerPage {
         // CHOIX TRIE
         displayMedia(getSortBy("popularite", mediasData)) // affichage par défaut
         $select.addEventListener('change', function () {
-            console.log('selectedIndex => ' + this.selectedIndex);
             if (this.selectedIndex == 0) {
                 displayMedia(getSortBy("popularite", mediasData))
             }

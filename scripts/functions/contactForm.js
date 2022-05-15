@@ -60,14 +60,22 @@ email.oninvalid = function(e) {
 	}
 }
 
-// validation formulaire
-modal.querySelector('.contact_button').addEventListener("click", function(e) {
+// validation formulaire 
+modal.addEventListener("submit", function(e) {
 	e.preventDefault()
 	if(firstName.value && lastName.value && email.value){
 		console.log("prénom :" + firstName.value)
 		console.log("nom :"+ lastName.value)
 		console.log("email :"+ email.value)
 		closeModal()
+		return false // empeche le rechargement de la page
 	}
 })
 
+// gestion de fermeture la modale
+window.addEventListener('keydown', (e) => {
+	if (e.key.includes('Escape')) {
+		closeModal()
+		document.querySelector(".contact_button").focus() 
+	}
+})

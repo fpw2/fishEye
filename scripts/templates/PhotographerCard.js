@@ -1,4 +1,3 @@
-
 class PhotographerTemplate {
     /**
      * Récupère les données pour pouvoir les utiliser dans mes méthodes
@@ -40,7 +39,7 @@ class PhotographerTemplate {
      * @returns {html} html
      */
     createPhotographerPage() {
-        const userCard =
+        const userCard =    
             `
         <h2 class="name-page">${this.photographer.name}</h2>
         <h3 class="locality">${this.photographer.city}, ${this.photographer.country}</h3>

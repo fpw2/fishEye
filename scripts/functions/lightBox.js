@@ -95,7 +95,7 @@ function getLightbox() {
     }
 
     window.addEventListener('keydown', (e) => { // écoute des touches pressées
-        //console.log(e.key) // m'indique quelle touche a été enfoncé
+        console.log(e.key) // m'indique quelle touche a été enfoncé
         if($lightboxContainer.style.display == "block"){
             if (e.key.includes('Left') || e.key.includes('Right')) {
                 e.preventDefault()
@@ -103,8 +103,7 @@ function getLightbox() {
             }
             if (e.key.includes('Escape')) {
                 hideLightBox()
-                closeModal() 
             }
-        }
+        }       
     })
 }

@@ -2,7 +2,6 @@ class Api {
     /**
      * Récupère les données de l'API
      * @param {string} chemin des données
-     * @returns {object} datas
      */
     constructor(url) {
         this.url = url

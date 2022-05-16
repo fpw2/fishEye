@@ -77,5 +77,7 @@ window.addEventListener('keydown', (e) => {
 	if (e.key.includes('Escape')) {
 		closeModal()
 		document.querySelector(".contact_button").focus() 
+	} else {
+		return false	
 	}
 })

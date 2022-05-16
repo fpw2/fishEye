@@ -39,6 +39,8 @@ class PhotographerTemplate {
      * @returns {html} html
      */
     createPhotographerPage() {
+        const nameForm = document.querySelector('#name-form')
+        nameForm.textContent = this.photographer.name
         const userCard =    
             `
         <h2 class="name-page">${this.photographer.name}</h2>

@@ -7,7 +7,7 @@ class PhotographerPage {
      * Récupère les données de l'API
      */
     constructor() {
-        this.photographerApi = new Api('/data/photographers.json')
+        this.photographerApi = new Api('./data/photographers.json')
     }
     /**
      * Créé l'en tête photographe avec les medias associés de la page photographer 

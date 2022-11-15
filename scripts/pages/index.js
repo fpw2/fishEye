@@ -1,6 +1,6 @@
 class HomePage {
     constructor() {
-        this.photographerApi = new Api('/data/photographers.json')
+        this.photographerApi = new Api('./data/photographers.json')
         this.$photographerSection = document.querySelector('.photographer_section')
     }
     async main() {
